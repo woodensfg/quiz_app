@@ -9,6 +9,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
 
   final _formKey = GlobalKey<FormState>();
+  String email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,39 @@ class _SignInState extends State<SignIn> {
       ),
       body: Form(
         child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
               Spacer(),
               TextFormField(
+                validator: (val) { return val.isEmpty ? "Enter correct email" : null;
+                },
                 decoration: InputDecoration(
                   hintText: "Email"
                 ),
-              )
+                onChanged: (val) {
+                  email = val;
+                },
+              ),
+              SizedBox(height: 6,),
+              TextFormField(
+                validator: (val) { return val.isEmpty ? "Enter password" : null;
+                },
+                decoration: InputDecoration(
+                    hintText: "Password"
+                ),
+                onChanged: (val) {
+                  password = val;
+                },
+              ),
+              SizedBox(height: 16,),
+              Container(
+                color: Colors.blue,
+                height: 50,
+                child: Text("Sign In"),
+              ),
+
+              SizedBox(height: 80,),
             ],
           ),
         ),
@@ -36,3 +62,4 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
+
